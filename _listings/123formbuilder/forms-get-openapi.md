@@ -1,0 +1,126 @@
+---
+swagger: "2.0"
+x-collection-name: 123FormBuilder
+x-complete: 0
+info:
+  title: 123FormBuilder List forms
+  version: 1.0.0
+  description: The forms endpoint returns information about the forms. The response
+    includes submissions and other details about each form.
+host: api.123contactform.com
+basePath: /v2
+schemes:
+- http
+produces:
+- application/json
+consumes:
+- application/json
+paths:
+  /ping:
+    get:
+      summary: Ping status
+      description: This indicates if our servers are up and running.
+      operationId: this-indicates-if-our-servers-are-up-and-running
+      x-api-path-slug: ping-get
+      responses:
+        200:
+          description: OK
+      tags:
+      - Ping
+      - Status
+  /token:
+    post:
+      summary: User login
+      description: "Allows you to authenticate users. \n\nRequired parameters:\n-
+        username OR email\n- password OR passhash"
+      operationId: allows-you-to-authenticate-users-required-parameters-username-or-email-password-or-passhash
+      x-api-path-slug: token-post
+      parameters:
+      - in: query
+        name: email
+      - in: query
+        name: passhash
+        description: MD5 password
+      - in: query
+        name: password
+        description: Plain text password
+      - in: query
+        name: username
+      responses:
+        200:
+          description: OK
+      tags:
+      - User
+      - Login
+  /token/refresh:
+    post:
+      summary: Refresh token
+      description: Refresh token
+      operationId: refresh-token
+      x-api-path-slug: tokenrefresh-post
+      parameters:
+      - in: formData
+        name: JWT
+        description: JWT authentication token
+      responses:
+        200:
+          description: OK
+      tags:
+      - Refresh
+      - Token
+  /token/invalidate:
+    post:
+      summary: Invalidate token
+      description: Invalidate token
+      operationId: invalidate-token
+      x-api-path-slug: tokeninvalidate-post
+      parameters:
+      - in: formData
+        name: JWT
+        description: JWT authentication token
+      responses:
+        200:
+          description: OK
+      tags:
+      - Invalidate
+      - Token
+  /forms:
+    get:
+      summary: List forms
+      description: The forms endpoint returns information about the forms. The response
+        includes submissions and other details about each form.
+      operationId: the-forms-endpoint-returns-information-about-the-forms-the-response-includes-submissions-and-other-d
+      x-api-path-slug: forms-get
+      parameters:
+      - in: query
+        name: JWT
+        description: JWT authentication token
+      - in: query
+        name: page
+        description: Page number
+      - in: query
+        name: per_page
+        description: The number of forms to get per page in a request
+      - in: query
+        name: search
+        description: Filter form name
+      responses:
+        200:
+          description: OK
+      tags:
+      - List
+      - Forms
+x-streamrank:
+  polling_total_time_average: 0
+  polling_size_download_average: 0
+  streaming_total_time_average: 0
+  streaming_size_download_average: 0
+  change_yes: 0
+  change_no: 0
+  time_percentage: 0
+  size_percentage: 0
+  change_percentage: 0
+  last_run: ""
+  days_run: 0
+  minute_run: 0
+---
